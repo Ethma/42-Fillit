@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Mendy <Mendy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 23:25:21 by Mendy             #+#    #+#             */
-/*   Updated: 2017/11/20 23:27:36 by Mendy            ###   ########.fr       */
+/*   Created: 2017/11/20 23:35:02 by Mendy             #+#    #+#             */
+/*   Updated: 2017/11/20 23:40:22 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+ #include "fillit.h"
 
-# include "libft.h"
+ t_map		ft_initialize_map(int len)
+ {
+	 int 	i;
+	 int 	j;
+	 t_map	*map;
 
-typedef struct	s_map
-{
-	int		size;
-	char	**tab;
-}				t_map;
+	 if(!(map =(t_map *)malloc(sizeof(t_map) * (len)))
+	 	return (NULL);
+	 i = 0;
+	 while (i < size)
+	 {
+		 j = 0;
+		 while (j < size)
+		 {
+			 map[i][j] = '.';
+			 
+		 }
+	 }
 
-typedef struct	s_point
-{
-	int			x;
-	int			y;
-}				t_point;
+	 }
+ }
