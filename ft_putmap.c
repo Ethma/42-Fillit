@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/21 16:27:00 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/22 08:47:50 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,28 @@ char	**ft_map(t_list *lst)
 	return ()
 }
 
-char	**ft_create(int len)
+char	**ft_create_new_map(int len)
 {
+	t_map	*map;
 	int		i;
 	int		j;
 
+	map = (t_map *)ft_memalloc(sizeof(t_map));
+	map->size = len;
+	map->tab = (char **)ft_memalloc(sizeof(char *) * len);
 	i = 0;
-	tab = (char **)malloc(sizeof(char **) * (len + 1));
-	if (!tab)
-		return (NULL);
-	while (i < )
+	while (i < len)
 	{
-		if (!(tab[i] = (char *)malloc(sizeof(char *) * len)))
-			return (NULL);
+		map->tab[i] = ft_strnew(size);
 		j = 0;
 		while (j < len)
 		{
-			tab[i][j] = '.';
+			map->tab[i][j] = '.';
 			j++;
 		}
-		tab[i][j] = '\0';
 		i++;
 	}
-	tab[i] = NULL;
-	return (tab);
+	return (map);
 }
 
 int		main(int ac, char **av)

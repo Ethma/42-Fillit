@@ -6,7 +6,7 @@
 /*   By: Mendy <Mendy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 23:25:21 by Mendy             #+#    #+#             */
-/*   Updated: 2017/11/21 16:17:14 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/22 08:45:37 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_map
 {
 	int		size;
 	char	**tab;
-	struct	s_map	*next;
 }				t_map;
 
 typedef struct	s_point
