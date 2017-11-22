@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 16:56:45 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/22 17:03:07 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int		put_tetriminos(t_tetri	*tetrimino, t_map	*map)
 		i++;
 	if (map->tab[i][j] == '.')
 	{
-
+		map->tab[i][j] == tetrimino->tetri[i];
+		j++;
 	}
-	else if (map[i][j] == '\n')
+	else if (map[i][j] == '\0')
 		i++;
 	else
 		j++;
