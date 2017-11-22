@@ -6,60 +6,65 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 08:47:50 by Mendy            ###   ########.fr       */
+/*   Updated: 2017/11/22 11:41:19 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-char	**ft_map(t_list *lst)
-{
-	char	**tab;
-
-
-	while (lst)
-	{
-
-		lst->next;
-	}
-	return ()
-}
-
+/* Initialize a new map with size taken from solver */
 char	**ft_create_new_map(int len)
 {
 	t_map	*map;
-	int		i;
-	int		j;
+	t_map	*tmp;
+	int		x;
+	int		y;
 
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	map->size = len;
 	map->tab = (char **)ft_memalloc(sizeof(char *) * len);
-	i = 0;
-	while (i < len)
+	y = 0;
+	while (y < len)
 	{
-		map->tab[i] = ft_strnew(size);
-		j = 0;
-		while (j < len)
+		map->tab[y] = ft_strnew(size);
+		x = 0;
+		while (x < len)
 		{
-			map->tab[i][j] = '.';
-			j++;
+			map->tab[y][x] = '.';
+			x++;
 		}
-		i++;
+		y++;
 	}
 	return (map);
 }
 
-int		main(int ac, char **av)
+/* As the name of the function it permit to print map */
+void	print_map(t_map	*map)
 {
-	char	**tab;
-	int		i;
+	int i;
 
-	tab = ft_putmap(atoi(av[1]));
-	while (tab[i])
+	i = 0;
+	while (i < map->size)
 	{
-		printf("%s\n", tab[i]);
+		ft_putstr(map->tab[i]);
+		ft_putchar('\n');
 		i++;
 	}
-	return (0);
+}
+
+/* Free false map */
+void	ft_free_map(t_map	*map)
+{
+	int i;
+
+	i = 0;
+	while (i < map->tab[i])
+	{
+		free(map->tab[i]);
+		map->tab[i] = NULL;
+		i++;
+	}
+	free(map->tab);
+	map->tab = NULL;
 }
