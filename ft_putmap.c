@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 13:25:06 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/22 16:53:25 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 char	**ft_create_new_map(int len)
 {
 	t_map	*map;
-	t_map	*tmp;
 	int		x;
 	int		y;
 
@@ -39,7 +38,7 @@ char	**ft_create_new_map(int len)
 	return (map->tab);
 }
 
-/* As the name of the function it permit to print map */
+/* As the name of the function it permit to print maps */
 void	ft_print_map(t_map	*map)
 {
 	int i;

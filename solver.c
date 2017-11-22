@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 13:31:44 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/22 16:56:45 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,28 @@ int		put_tetriminos(t_tetri	*tetrimino, t_map	*map)
 {
 	int y;
 	int x;
-	while (tetrimino->tetri[y][x] == '.' || tetrimino->tetri[y][x] == '\n')
+	int i;
+
+	y = 0;
+	x = 0;
+	i = 0;
+	while (tetrimino->tetri[i] == '.' || tetrimino->tetri[i] == '\n')
 		i++;
-	if (tetrimino->tetri[y][x] =)
+	if (map->tab[i][j] == '.')
 	{
+
 	}
+	else if (map[i][j] == '\n')
+		i++;
+	else
+		j++;
 	return (1);
 }
-int		check_retour_pieces(t_tetri	*tetrimino)
+int		check_return_pieces(t_tetri	*tetrimino)
 {
 	while (tetrimino)
 	{
-		if (put_tetriminos(tetrimino) == 0)
+		if (put_tetriminos(tetrimino) == NULL)
 			return (0);
 		tetrimino->next;
 	}
@@ -47,14 +57,18 @@ t_map	*ft_solve(t_tetri	*tetrimino)
 {
 	t_map	*map;
 	int		size;
+	int		i;
 
+	i = 0;
 	size = map_size(ft_lstlen(tetrimino) * 4);
 	map = ft_create_new_map(map);
-	while (check_retour_pieces(tetrimino) != 1)
+	while (i < ft_lstlen(tetrimino))
 	{
-		size++;
+		check_return_pieces(tetrimino);
 		ft_free_map(map);
+		size++;
 		map = ft_create_new_map(size);
+		i++;
 	}
 	return (map)
 }
