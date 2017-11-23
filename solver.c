@@ -6,30 +6,23 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 17:03:07 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/23 12:17:33 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 #include	"fillit.h"
 
-int		map_size(int len)
-{
-	size = 2;
-	while (size * size < len)
-		size++;
-	return (size);
-}
 
-int		put_tetriminos(t_tetri	*tetrimino, t_map	*map)
+
+int		put_tetriminos()
+
+/* Function who test if a piece can be pose */
+int		check_tetrimino(t_map	*map, int x, int y)
 {
-	int y;
-	int x;
 	int i;
+	int j;
 
-	y = 0;
-	x = 0;
-	i = 0;
 	while (tetrimino->tetri[i] == '.' || tetrimino->tetri[i] == '\n')
 		i++;
 	if (map->tab[i][j] == '.')
@@ -43,33 +36,52 @@ int		put_tetriminos(t_tetri	*tetrimino, t_map	*map)
 		j++;
 	return (1);
 }
-int		check_return_pieces(t_tetri	*tetrimino)
+
+/*  Backtracking function */
+int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 {
-	while (tetrimino)
+	int x;
+	int y;
+
+	y = 0;
+	while (y < map->size)
 	{
-		if (put_tetriminos(tetrimino) == NULL)
-			return (0);
-		tetrimino->next;
+		x = 0;
+		while (x < map->size)
+		{
+			if (check_tetrimino(map, tetrimino, x, y) != 0)
+			{
+				put_tetriminos();    bnm
+				if (place_all_tetri(tetrimino->next, map) != 1)
+					return (0);
+			}
+			x++;
+		}
+		y++;
 	}
 	return (1);
 }
 
-t_map	*ft_solve(t_tetri	*tetrimino)
+int		map_size(int len)
+{
+	size = 2;
+	while (size * size < len)
+		size++;
+	return (size);
+}
+
+t_map	*ft_solve(t_tetri tetrimino)
 {
 	t_map	*map;
 	int		size;
-	int		i;
 
-	i = 0;
 	size = map_size(ft_lstlen(tetrimino) * 4);
 	map = ft_create_new_map(map);
-	while (i < ft_lstlen(tetrimino))
+	while (place_all_tetri(tetrimino, map) != 1)
 	{
-		check_return_pieces(tetrimino);
 		ft_free_map(map);
 		size++;
 		map = ft_create_new_map(size);
-		i++;
 	}
 	return (map)
 }
