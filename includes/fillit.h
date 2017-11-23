@@ -6,7 +6,7 @@
 /*   By: Mendy <Mendy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 23:25:21 by Mendy             #+#    #+#             */
-/*   Updated: 2017/11/22 15:58:10 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/23 15:08:55 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@ int		tetri_parse(char **av);
 
 typedef struct		s_tetri
 {
-	char			**tetri;
+	char			*tetri;
 	struct s_tetri	*next;
 }					t_tetri;
 
 typedef struct	s_map
 {
 	int		size;
-	char	**tab;
+	char	*tab;
 }				t_map;
+
+t_tetri	*tetri_parse(char **av);
+t_tetri *ft_lst_tetri(char *buf, t_tetri *head, int tetri_nb);
 
 #endif

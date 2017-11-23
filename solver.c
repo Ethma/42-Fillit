@@ -6,14 +6,12 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/23 13:19:45 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/23 15:11:02 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 #include	"fillit.h"
-
-
 
 int		put_tetriminos()
 
@@ -21,13 +19,13 @@ int		put_tetriminos()
 int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y)
 {
 	int i;
-	int j;
 
 	i = 0;
-	while (ft_isalpha(tetrimino->tetri[i]) != 1)
+	while (i < ft_strlen(map->tab))
 	{
-
-		i++;
+		x++;
+		if (map->tab[x] != '.' && ft_isalpha(tetrimino->tetri[x]) != 1)
+			return (0);
 	}
 	return (1);
 }
