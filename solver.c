@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/23 15:11:02 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/24 15:59:22 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y)
 	i = 0;
 	while (i < ft_strlen(map->tab))
 	{
-		x++;
 		if (map->tab[x] != '.' && ft_isalpha(tetrimino->tetri[x]) != 1)
 			return (0);
+		x++;
 	}
 	return (1);
 }
@@ -37,22 +37,24 @@ int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 	int y;
 
 	y = 0;
-	while (y < map->size)
+	if (tetrimino == NULL)
+		return (1);
+	while (y <= (map->size - tetrimino->height))
 	{
 		x = 0;
-		while (x < map->size)
+		while (x <= (map->size - tetrimino->width))
 		{
 			if (check_tetrimino(map, tetrimino, x, y) != 0)
 			{
 				put_tetriminos();
 				if (place_all_tetri(tetrimino->next, map) != 1)
-					return (0);
+					return (1);
 			}
 			x++;
 		}
 		y++;
 	}
-	return (1);
+	return (0);
 }
 
 int		map_size(int len)
@@ -69,7 +71,7 @@ t_map	*ft_solve(t_tetri tetrimino)
 	int		size;
 
 	size = map_size(ft_lstlen(tetrimino) * 4);
-	map = ft_create_new_map(map);
+	map = ft_create_new_map(size);
 	while (place_all_tetri(tetrimino, map) != 1)
 	{
 		ft_free_map(map);

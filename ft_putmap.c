@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/22 16:53:25 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/24 16:36:02 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,46 @@ void	ft_free_map(t_map	*map)
 	}
 	free(map->tab);
 	map->tab = NULL;
+}
+
+void	ft_clean_piece(t_map	*map, t_tetri	*tetrimino)
+{
+	int x;
+	int y;
+	int line;
+
+	line = map->size + 1;
+	y = 0;
+	while (j < tetrimino->height)
+	{
+		x = 0;
+		while (i < tetrimino->width)
+		{
+			if (ft_isalpha(map->tab[x + y * line] == 1))
+			{
+				map->tab[x + y * line] = '.'
+			}
+			x++;
+		}
+		j++;
+	}
+}
+
+int		count_sizes(t_tetri		*tetrimino)
+{
+	int i;
+	int line;
+
+	line = ft_strlen(tetrimino->tetri);
+	i = 0;
+	while (tetrimino->tetri)
+	{
+		if (ft_isalpha(tetrimino->tetri[i]) == 1)
+		{
+			tetrimino->height++;
+			tetrimino->width++;
+			if (ft_isalpha(tetrimino->tetri[]) == 1
+		}
+		i++;
+	}
 }
