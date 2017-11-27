@@ -6,7 +6,7 @@
 /*   By: Mendy <Mendy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 23:25:21 by Mendy             #+#    #+#             */
-/*   Updated: 2017/11/27 14:38:16 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:18:25 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ typedef struct	s_point
 t_tetri	*tetri_parse(char **av);
 t_tetri	*ft_lst_tetri(char *buf, t_tetri *head, int tetri_nb);
 char	*ft_tetrin_tab(char *tab, char *buf, int tetri_nb);
-char	**ft_create_new_map(int len);
+t_map	*ft_create_new_map(int len);
 void	ft_print_map(t_map	*map);
 void	ft_free_map(t_map	*map);
 t_point	*new_point(int y, int x);
 void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c);
-int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y);
+int		check_tetrimino(t_map	*map, t_tetri *tetrimino, int x, int y);
 int		place_all_tetri(t_tetri *tetrimino, t_map *map);
 int		map_size(int len);
 t_map	*ft_solve(t_tetri *tetrimino);
-int		tetri_parse(char **av);
+int		ft_lstlen(t_tetri *head);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/27 13:32:13 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:04:15 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,58 @@
 #include "includes/fillit.h"
 
 /* Initialize a new map with size taken from solver */
-char	**ft_create_new_map(int len)
+t_map	*ft_create_map(int len)
 {
 	t_map	*map;
 	int		x;
 	int		y;
+	int		i;
 
-	map = (t_map *)ft_memalloc(sizeof(t_map));
+	map = (t_map*)ft_memalloc(sizeof(t_map));
 	map->size = len;
-	map->tab = (char **)ft_memalloc(sizeof(char *) * len);
+	map->tab = (char*)ft_memalloc(sizeof(map->tab) * len + 1);
 	y = 0;
 	while (y < len)
 	{
-		map->tab[y] = ft_strnew(len);
 		x = 0;
-		while (x < len)
+		while (x <= len)
 		{
-			map->tab[y][x] = '.';
+			i = x + y * (len + 1);
+			(x / len == 0) ? (map->tab[i] = '.') : (map->tab[i] = '\n');
 			x++;
 		}
 		y++;
 	}
-	return (map->tab);
+	return (map);
 }
-
-/* As the name of the function it permit to print maps */
-void	ft_print_map(t_map	*map)
-{
-	int i;
-
-	i = 0;
-	while (i < map->size)
-	{
-		ft_putstr(map->tab[i]);
-		ft_putchar('\n');
-		i++;
-	}
-}
-
 /* Free false map */
-void	ft_free_map(t_map	*map)
+void	ft_free_map(t_map *map)
 {
-	int i;
-
-	i = 0;
-	while (i < map->tab[i])
-	{
-		free(map->tab[i]);
-		map->tab[i] = NULL;
-		i++;
-	}
 	free(map->tab);
 	map->tab = NULL;
+}
+/* Function who calculates the number of tetriminos given */
+int		ft_lstlen(t_tetri *head)
+{
+	int	size;
+
+	size = 0;
+	while (head->next != NULL)
+	{
+		head = head->next;
+		size++;
+	}
+	return (size);
+}
+/* Calculate the map min size */
+int		map_size(int len)
+{
+	int size;
+
+	size = 2;
+	while (size * size < len)
+		size++;
+	return (size);
 }
 
 /* Add a new struct point */

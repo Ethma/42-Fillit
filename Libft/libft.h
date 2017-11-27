@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:40 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/21 13:41:32 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:15:28 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ void				ft_swap(int *a, int *b);
 int					ft_sqrt(int nb);
 int					ft_find_next_prime(int nb);
 int					ft_isnegative(int n);
-int					ft_lstlen(t_list *lst);
 
 #endif
