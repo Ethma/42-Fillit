@@ -6,7 +6,7 @@
 /*   By: Mendy <Mendy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 23:25:21 by Mendy             #+#    #+#             */
-/*   Updated: 2017/11/27 13:36:44 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 14:38:16 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_point
 
 t_tetri	*tetri_parse(char **av);
 t_tetri	*ft_lst_tetri(char *buf, t_tetri *head, int tetri_nb);
+char	*ft_tetrin_tab(char *tab, char *buf, int tetri_nb);
 char	**ft_create_new_map(int len);
 void	ft_print_map(t_map	*map);
 void	ft_free_map(t_map	*map);
