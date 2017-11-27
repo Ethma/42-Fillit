@@ -6,11 +6,12 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:44:14 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/23 10:22:05 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 14:25:38 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "includes/fillit.h"
+#include "Libft/libft.h"
 
 void	ft_error(int n)
 {
@@ -22,16 +23,20 @@ void	ft_error(int n)
 
 int		main(int ac, char **av)
 {
+	t_tetri	*head;
 	t_map	*map;
 
+	head = NULL;
 	if (ac == 2)
 	{
-		if (tetri_parse(&av[1]) == 0)
+		if (( head = tetri_parse(&av[1])) == NULL)
 			ft_error(1);
+		else
+			ft_tetrin_map(head);
 	}
 	else
 		ft_error(2);
-	map = ft_solve();
+	map = ft_solve(head);
 	ft_print_map(map);
 	return (0);
 }

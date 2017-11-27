@@ -6,14 +6,12 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/27 10:40:49 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 14:34:49 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
-#include	"fillit.h"
-
-#define I (point->x + j + (point->y + i) * map->size)
+#include	"Libft/libft.h"
+#include	"includes/fillit.h"
 
 void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 {
@@ -21,13 +19,13 @@ void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 	int j;
 
 	i = 0;
-	while (i < tetri->width)
+	while (i < tetrimino->width)
 	{
 		j = 0;
-		while (j < tetri->height)
+		while (j < tetrimino->height)
 		{
-			if (ft_isalpha(tetrimino->tetri) == 1)
-				map->tab[I] = c;
+			if (ft_isalpha(tetrimino->tetri[j + i * 5]) == 1)
+				map->tab[point->x + j + (point->y + i) * map->size] = c;
 			j++;
 		}
 		i++;
@@ -35,20 +33,26 @@ void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 	ft_memdel((void **)&point);
 }
 /* Function who test if a piece can be pose */
-int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y)
+int		check_tetrimino(t_map	*map, t_tetri *tetrimino, int x, int y)
 {
 	int i;
-	int ;
+	int j;
 
 	i = 0;
-	while (i < ft_strlen(map->tab))
+	while (i < tetrimino->height)
 	{
-		x = 0;
-		if (map->tab[x] != '.' && ft_isalpha(tetrimino->tetri[x]) != 1)
-			return (0);
-		x++;
+		j = 0;
+		while (j < tetrimino->width)
+		{
+			if (map->tab[j + i * 5] != '.' && ft_isalpha(tetrimino->tetri
+				[j + i * 5]) != 1)
+				return (0);
+			j++;
+		}
+		i++;
 	}
-	put_tetriminos()
+	put_tetriminos(tetrimino, map, new_point(x, y), tetrimino->tetri
+	[point->x + j + (point y + i) * map->size]);
 	return (1);
 }
 
@@ -82,6 +86,8 @@ int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 
 int		map_size(int len)
 {
+	int size;
+
 	size = 2;
 	while (size * size < len)
 		size++;
@@ -94,12 +100,12 @@ t_map	*ft_solve(t_tetri *tetrimino)
 	int		size;
 
 	size = map_size(ft_lstlen(tetrimino) * 4);
-	map = ft_create_new_map(size);
+	map->tab = ft_create_new_map(size);
 	while (!place_all_tetri(tetrimino, map))
 	{
-		ft_free_map(map);
+		ft_free_map(map->tab);
 		size++;
-		map = ft_create_new_map(size);
+		map->tab = ft_create_new_map(size);
 	}
-	return (map)
+	return (map);
 }

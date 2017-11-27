@@ -6,12 +6,12 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 14:40:07 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/27 10:17:01 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 13:32:13 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "fillit.h"
+#include "Libft/libft.h"
+#include "includes/fillit.h"
 
 /* Initialize a new map with size taken from solver */
 char	**ft_create_new_map(int len)
@@ -68,6 +68,7 @@ void	ft_free_map(t_map	*map)
 	map->tab = NULL;
 }
 
+/* Add a new struct point */
 t_point		*new_point(int y, int x)
 {
 	t_point		*point;
