@@ -6,12 +6,14 @@
 /*   By: mabessir <mabessir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 10:51:19 by mabessir          #+#    #+#             */
-/*   Updated: 2017/11/26 21:09:40 by Mendy            ###   ########.fr       */
+/*   Updated: 2017/11/27 10:40:49 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 #include	"fillit.h"
+
+#define I (point->x + j + (point->y + i) * map->size)
 
 void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 {
@@ -24,8 +26,8 @@ void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 		j = 0;
 		while (j < tetri->height)
 		{
-			if (tetrimino->tetri[i] == '#')
-				map->tab[point->y + j][point->x + i] = c;
+			if (ft_isalpha(tetrimino->tetri) == 1)
+				map->tab[I] = c;
 			j++;
 		}
 		i++;
@@ -36,7 +38,7 @@ void	put_tetriminos(t_tetri *tetrimino, t_map *map, t_point *point, char c)
 int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y)
 {
 	int i;
-	int x;
+	int ;
 
 	i = 0;
 	while (i < ft_strlen(map->tab))
@@ -46,6 +48,7 @@ int		check_tetrimino(t_map	*map, t_tetri tetrimino, int x, int y)
 			return (0);
 		x++;
 	}
+	put_tetriminos()
 	return (1);
 }
 
@@ -68,7 +71,7 @@ int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 				if (place_all_tetri(tetrimino->next, map))
 					return (1);
 				else
-					put_tetriminos();
+					put_tetriminos(tetrimino, map, new_point(y, x), '.');
 			}
 			x++;
 		}
