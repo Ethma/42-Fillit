@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:44:14 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/27 15:17:50 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:45:14 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fillit.h"
-#include "Libft/libft.h"
+#include "fillit.h"
 
 void	ft_error(int n)
 {
@@ -23,18 +22,16 @@ void	ft_error(int n)
 
 int		main(int ac, char **av)
 {
-	t_tetri	*head;
-	t_map	*map;
+	t_tetri *head;
 
 	head = NULL;
 	if (ac == 2)
 	{
 		if ((head = tetri_parse(&av[1])) == NULL)
 			ft_error(1);
+		ft_tetrin_map(head);
 	}
 	else
 		ft_error(2);
-	map = ft_solve(head);
-	ft_putstr(map->tab);
 	return (0);
 }

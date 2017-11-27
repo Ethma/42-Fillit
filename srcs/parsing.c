@@ -6,58 +6,11 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 13:13:36 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/23 16:33:24 by rpinoit          ###   ########.fr       */
+/*   Updated: 2017/11/27 17:45:34 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fillit.h"
-
-char			*ft_tetrin_tab(char *tab, char *buf, int tetri_nb)
-{
-	int i;
-
-	i = 0;
-	while (buf[i] != '\0')
-		i++;
-	tab = (char*)ft_memalloc(sizeof(*tab) * (i + 1));
-	i = 0;
-	while (buf[i] != '\0')
-	{
-		if (buf[i] == '#')
-			tab[i] = tetri_nb + '@';
-		else
-			tab[i] = buf[i];
-		i++;
-	}
-	tab[i] = '\0';
-	return (tab);
-}
-
-t_tetri			*ft_lst_tetri(char *buf, t_tetri *head, int tetri_nb)
-{
-	t_tetri *new;
-	t_tetri *lst;
-
-	new = NULL;
-	lst = NULL;
-	if (tetri_nb == 1)
-	{
-		head = (t_tetri*)ft_memalloc(sizeof(*head));
-		head->tetri = ft_tetrin_tab(head->tetri, buf, tetri_nb);
-		head->next = NULL;
-	}
-	if (tetri_nb > 1)
-	{
-		lst = head;
-		new = (t_tetri*)ft_memalloc(sizeof(*new));
-		new->tetri = ft_tetrin_tab(new->tetri, buf, tetri_nb);
-		new->next = NULL;
-		while (lst->next != NULL)
-			lst = lst->next;
-		lst->next = new;
-	}
-	return (head);
-}
+#include "fillit.h"
 
 static int		contact_check(char *buf)
 {
