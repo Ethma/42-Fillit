@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:26:56 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/27 17:16:40 by rpinoit          ###   ########.fr       */
+/*   Updated: 2017/11/27 22:59:25 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int					place_all_tetri(t_tetri *tetrimino, t_map *map);
 void				ft_tetrin_map(t_tetri *head);
 t_tetri				*tetri_parse(char **av);
 t_tetri				*ft_lst_tetri(char *buf, t_tetri *head, int tetri_nb);
+int					tetri_identify(char *tetri);
 
 #endif

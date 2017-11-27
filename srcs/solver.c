@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 14:32:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/27 22:39:40 by Mendy            ###   ########.fr       */
+/*   Updated: 2017/11/27 23:00:53 by Mendy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	put_tetriminos(t_tetri *tetri, t_map *map, t_point *point, char c)
 		{
 			if (ft_isalpha(tetri->tetri[j + i * 5]) == 1)
 				map->tab[point->x + j + (point->y + i) * map->size] = c;
-				printf("%s", map->tab);
 			j++;
 		}
 		i++;
@@ -47,9 +46,7 @@ int		check_tetrimino(t_map   *map, t_tetri *tetrimino, int x, int y)
 {
 	int i;
 	int j;
-	int k;
 
-	k = 64;
 	i = 0;
 	while (i < tetrimino->height)
 	{
@@ -63,8 +60,8 @@ int		check_tetrimino(t_map   *map, t_tetri *tetrimino, int x, int y)
 		}
 		i++;
 	}
-	k++;
-	put_tetriminos(tetrimino, map, new_point(y, x), k);
+	put_tetriminos(tetrimino, map, new_point(y, x),
+	tetri_identify(tetrimino->tetri));
 	return (1);
 }
 
@@ -91,6 +88,25 @@ int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 			x++;
 		}
 		y++;
+	}
+	return (0);
+}
+
+int		tetri_identify(char *tetri)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (tetri[i])
+	{
+		if (ft_isalpha(tetri[i]) == 1)
+		{
+			j = tetri[i];
+			return (j);
+		}
+		i++;
 	}
 	return (0);
 }
