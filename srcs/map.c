@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 13:17:01 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/28 14:20:47 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/28 14:14:51 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_tetrin_map(t_tetri *head)
 		map->tab = NULL;
 		size++;
 		map = ft_create_map(size);
-		printf("%s\n", map->tab);
 	}
 	ft_print_map(map->tab);
 }

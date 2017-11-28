@@ -6,7 +6,7 @@
 /*   By: rpinoit <rpinoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 14:32:33 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/28 14:14:55 by mabessir         ###   ########.fr       */
+/*   Updated: 2017/11/28 15:47:18 by mabessir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	put_tetriminos(t_tetri *tetri, t_map *map, t_point *point, char c)
 		j = 0;
 		while (j < tetri->height)
 		{
-			if (ft_isalpha(tetri->tetri[i][j]) == 1)
-				map->tab[point->y + i][point->x + j] = c;
+			if (tetri->tetri[j][i] >= 65 && tetri->tetri[j][i] <= 90)
+				map->tab[point->y + j][point->x + i] = c;
 			j++;
 		}
 		i++;
@@ -49,10 +49,10 @@ char	ft_what_alpha(char **str)
 
 	i = 0;
 	j = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		j = 0;
-		while (j < 4)
+		while (j < 6)
 		{
 			if (str[i][j] >= 'A' && str[i][j] <= 'Z')
 				return (str[i][j]);
@@ -75,15 +75,13 @@ int		check_tetrimino(t_map   *map, t_tetri *tetrimino, int x, int y)
 		j = 0;
 		while (j < tetrimino->width)
 		{
-			if (map->tab[y + i][x + j] != '.' &&
-			ft_isalpha(tetrimino->tetri[i][j]) != 1)
+			if ((tetrimino->tetri[i][j] >=65 && tetrimino->tetri[i][j] <= 90) && map->tab[y + j][x + i] != '.')
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	put_tetriminos(tetrimino, map, new_point(x, y),
-	ft_what_alpha(tetrimino->tetri));
+	put_tetriminos(tetrimino, map, new_point(x, y), ft_what_alpha(tetrimino->tetri));
 	return (1);
 }
 
@@ -95,14 +93,14 @@ int		place_all_tetri(t_tetri *tetrimino, t_map *map)
 	y = 0;
 	if (tetrimino == NULL)
 		return (1);
-	while (y <= (map->size - tetrimino->height))
+	while (y < (map->size - tetrimino->height))
 	{
 		x = 0;
-		while (x <= (map->size - tetrimino->width))
+		while (x < (map->size - tetrimino->width))
 		{
-			if (check_tetrimino(map, tetrimino, x, y) != 0)
+			if (check_tetrimino(map, tetrimino, x, y))
 			{
-				if (place_all_tetri(tetrimino->next, map) != 0)
+				if (place_all_tetri(tetrimino->next, map))
 					return (1);
 				else
 					put_tetriminos(tetrimino, map, new_point(x, y), '.');
