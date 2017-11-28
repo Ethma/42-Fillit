@@ -6,9 +6,8 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 16:16:34 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/27 18:46:59 by rpinoit          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*   Updated: 2017/11/28 13:42:10 by rpinoit          ###   ########.fr       */
+
 
 #include "fillit.h"
 
@@ -29,7 +28,7 @@ t_tetri		*ft_tetri_pos(t_tetri *lst)
 		x = 0;
 		while (x < 4)
 		{
-			if (lst->tetri[x + y * 5] >= 'A' && lst->tetri[x + y * 5] <= 'Z')
+			if (lst->tetri[y][x] >= 'A' && lst->tetri[y][x] <= 'Z')
 			{
 				pos->max_x = x > pos->max_x ? x : pos->max_x;
 				pos->max_y = y > pos->max_y ? y : pos->max_y;
@@ -45,24 +44,27 @@ t_tetri		*ft_tetri_pos(t_tetri *lst)
 	return (lst);
 }
 
-char		*ft_tetrin_tab(char *tab, char *buf, int tetri_nb)
+char		**ft_tetrin_tab(char **tab, char *buf, int tetri_nb)
 {
 	int i;
+	int	j;
 
+	(void)buf;
 	i = 0;
-	while (buf[i] != '\0')
-		i++;
-	tab = (char*)ft_memalloc(sizeof(*tab) * (i + 1));
-	i = 0;
-	while (buf[i] != '\0')
+	tab = (char**)ft_memalloc(sizeof(tab) * 5);
+	while (i < 5)
 	{
-		if (buf[i] == '#')
-			tab[i] = tetri_nb + '@';
-		else
-			tab[i] = buf[i];
+		tab[i] = (char*)malloc(sizeof(char*));
+		j = 0;
+		while (j < 4)
+		{
+			tab[i][j] = tetri_nb + '@';
+			j++;
+		}
+		tab[i][j] = '\0';
 		i++;
 	}
-	tab[i] = '\0';
+	tab[i] = NULL;
 	return (tab);
 }
 

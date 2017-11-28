@@ -6,7 +6,7 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 13:17:01 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/27 19:16:50 by rpinoit          ###   ########.fr       */
+/*   Updated: 2017/11/28 13:15:55 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,29 @@
 t_map	*ft_create_map(int len)
 {
 	t_map	*map;
-	int		x;
-	int		y;
+	char	**tab;
 	int		i;
+	int		j;
 
 	map = (t_map*)ft_memalloc(sizeof(t_map));
 	map->size = len;
-	map->tab = (char*)ft_memalloc(sizeof(map->tab) * len + 1);
-	y = 0;
-	while (y < len)
+	i = 0;
+	tab = (char **)malloc(sizeof(char **) * len);
+	while (i < len)
 	{
-		x = 0;
-		while (x <= len)
+		if (!(tab[i] = (char *)malloc(sizeof(char *) * len)))
+			return (NULL);
+		j = 0;
+		while (j < len)
 		{
-			i = x + y * (len + 1);
-			(x / len == 0) ? (map->tab[i] = '.') : (map->tab[i] = '\n');
-			x++;
+			tab[i][j] = '.';
+			j++;
 		}
-		y++;
+		tab[i][j] = '\0';
+		i++;
 	}
+	tab[i] = NULL;
+	map->tab = tab;
 	return (map);
 }
 
@@ -60,6 +64,19 @@ int		ft_lstlen(t_tetri *head)
 	return (size);
 }
 
+void	ft_print_map(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i] != '\0')
+	{
+		ft_putstr(tab[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
 void	ft_tetrin_map(t_tetri *head)
 {
 	t_map	*map;
@@ -74,5 +91,5 @@ void	ft_tetrin_map(t_tetri *head)
 		size++;
 		map = ft_create_map(size);
 	}
-	ft_putstr(map->tab);
+	ft_print_map(map->tab);
 }
