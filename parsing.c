@@ -6,16 +6,16 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 13:13:36 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/28 14:34:44 by rpinoit          ###   ########.fr       */
+/*   Updated: 2017/12/01 16:00:26 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		contact_check(char *buf)
+static int	contact_check(char *buf)
 {
-	int i;
-	int contact;
+	int	i;
+	int	contact;
 
 	i = 0;
 	contact = 0;
@@ -39,10 +39,10 @@ static int		contact_check(char *buf)
 	return (0);
 }
 
-static int		tetri_check(char *buf, int max_tetri)
+static int	tetri_check(char *buf, int max_tetri)
 {
-	int i;
-	int s_max;
+	int	i;
+	int	s_max;
 
 	i = 0;
 	s_max = 0;
@@ -64,7 +64,7 @@ static int		tetri_check(char *buf, int max_tetri)
 	return (max_tetri);
 }
 
-t_tetri			*tetri_parse(char **av)
+t_tetri		*tetri_parse(char **av)
 {
 	int		fd;
 	int		tetri_nb;

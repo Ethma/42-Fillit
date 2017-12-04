@@ -4,18 +4,19 @@ CC = gcc
 C_FLAGS = -c -Wall -Wextra -Werror
 O_FLAGS = -Wall -Wextra -Werror -o
 RM = rm -f
-SRC_NAME = srcs/parsing.c \
-		   srcs/map.c \
-		   srcs/lst.c \
-		   srcs/solver.c \
-		  srcs/main.c \
+SRC_NAME = parsing.c \
+		   map.c \
+		   lst.c \
+		   solver.c \
+		  main.c \
 		  Libft/ft_bzero.c \
 		  Libft/ft_putstr.c \
 		  Libft/ft_putchar.c \
 		  Libft/ft_memset.c \
 		  Libft/ft_memalloc.c \
 		  Libft/ft_isalpha.c \
-		  Libft/ft_memdel.c
+		  Libft/ft_memdel.c \
+		  Libft/ft_strnew.c
 O_FILES = parsing.o \
 		  map.o \
 		  lst.o \
@@ -27,7 +28,8 @@ O_FILES = parsing.o \
 		  ft_memset.o \
 		  ft_memalloc.o \
 		  ft_isalpha.o \
-		  ft_memdel.o
+		  ft_memdel.o \
+		  ft_strnew.o
 all: $(NAME)
 
 $(NAME) :

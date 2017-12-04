@@ -6,13 +6,13 @@
 /*   By: rpinoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 13:17:01 by rpinoit           #+#    #+#             */
-/*   Updated: 2017/11/28 14:14:51 by rpinoit          ###   ########.fr       */
+/*   Updated: 2017/12/01 18:44:15 by rpinoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_map	*ft_create_map(int len)
+t_map		*ft_create_map(int len)
 {
 	t_map	*map;
 	char	**tab;
@@ -22,36 +22,37 @@ t_map	*ft_create_map(int len)
 	map = (t_map*)ft_memalloc(sizeof(t_map));
 	map->size = len;
 	i = 0;
-	tab = (char **)malloc(sizeof(char **) * len);
+	tab = (char**)malloc(sizeof(char*) * len);
 	while (i < len)
 	{
-		if (!(tab[i] = (char *)malloc(sizeof(char *) * len)))
-			return (NULL);
+		tab[i] = ft_strnew(len);
 		j = 0;
 		while (j < len)
 		{
 			tab[i][j] = '.';
 			j++;
 		}
-		tab[i][j] = '\0';
 		i++;
 	}
-	tab[i] = NULL;
 	map->tab = tab;
 	return (map);
 }
 
-int		map_size(int len)
+static void	ft_free_map(t_map *map)
 {
-	int size;
+	int i;
 
-	size = 2;
-	while (size * size < len)
-		size++;
-	return (size);
+	i = 0;
+	while (i < map->size)
+	{
+		ft_memdel((void **)&(map->tab[i]));
+		i++;
+	}
+	ft_memdel((void **)&(map->tab));
+	ft_memdel((void **)&map);
 }
 
-int		ft_lstlen(t_tetri *head)
+static int	ft_lstlen(t_tetri *head)
 {
 	int size;
 
@@ -64,20 +65,17 @@ int		ft_lstlen(t_tetri *head)
 	return (size);
 }
 
-void	ft_print_map(char **tab)
+static int	map_size(int len)
 {
-	int i;
+	int size;
 
-	i = 0;
-	while (tab[i] != '\0')
-	{
-		ft_putstr(tab[i]);
-		ft_putchar('\n');
-		i++;
-	}
+	size = 2;
+	while (size * size < len)
+		size++;
+	return (size);
 }
 
-void	ft_tetrin_map(t_tetri *head)
+t_map		*tetri_in_map(t_tetri *head)
 {
 	t_map	*map;
 	int		size;
@@ -86,10 +84,9 @@ void	ft_tetrin_map(t_tetri *head)
 	map = ft_create_map(size);
 	while ((place_all_tetri(head, map)) == 0)
 	{
-		free(map->tab);
-		map->tab = NULL;
 		size++;
+		ft_free_map(map);
 		map = ft_create_map(size);
 	}
-	ft_print_map(map->tab);
+	return (map);
 }
